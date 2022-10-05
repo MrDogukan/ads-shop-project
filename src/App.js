@@ -25,7 +25,7 @@ function App() {
         <Route path="products/:id" element={<SingleProduct />} />
         <Route path="error" element={<Error />} />
         <Route path="checkout" element={<Checkout />} />
-        <Route path="error" element={<Error />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </Router>
