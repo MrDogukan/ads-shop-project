@@ -34,7 +34,6 @@ const FilterContext = React.createContext();
 export const FilterProvider = ({ children }) => {
   const { products } = useProductsContext();
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products });
   }, [products]);
@@ -43,14 +42,13 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: FILTER_PRODUCTS });
     dispatch({ type: SORT_PRODUCTS });
   }, [state.sort, state.filters]);
-
+  // functions
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
   };
   const setListView = () => {
     dispatch({ type: SET_LISTVIEW });
   };
-
   const updateSort = (e) => {
     // just for demonstration;
     // const name = e.target.name
