@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -10,15 +10,15 @@ import { useUserContext } from "../context/user_context";
 
 const Sidebar = () => {
   const { isSidebarOpen, closeSidebar } = useProductsContext();
-
+  const { myUser } = useUserContext();
   return (
     <SidebarContainer>
       <aside
         className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
       >
         <div className="sidebar-header">
-          <img src={logo} className="logo" alt="logo" />
-          <button className="close-btn" type="button" onClick={closeSidebar}>
+          <img src={logo} className="logo" alt="coding addict" />
+          <button className="close-btn" onClick={closeSidebar}>
             <FaTimes />
           </button>
         </div>
@@ -32,11 +32,13 @@ const Sidebar = () => {
               </li>
             );
           })}
-          <li>
-            <Link to="/checkout" onClick={closeSidebar}>
-              Checkout
-            </Link>
-          </li>
+          {myUser && (
+            <li>
+              <Link to="/checkout" onClick={closeSidebar}>
+                checkout
+              </Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </aside>
